@@ -1,1 +1,58 @@
-
+## Tech Stack
+ 
+**Backend:**
+- **Node.js**: A JavaScript runtime built on Chrome's V8 JavaScript engine, used for building scalable network applications.
+- **Express.js**: A minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
+- **MongoDB**: A NoSQL database that stores data in flexible, JSON-like documents.
+- **Mongoose**: An ODM (Object Data Modeling) library for MongoDB and Node.js, providing schema-based modeling for application data.
+ 
+## Endpoints
+ 
+1. **Get Rows from Collection with Limit:**
+   - **Endpoint**: `GET /api/:collectionName`
+   - **Description**: Fetches rows from the specified collection with an optional `limit` parameter to limit the number of returned documents.
+   - **Parameters**:
+     - `collectionName`: Name of the MongoDB collection.
+     - `limit` (optional): Limits the number of documents returned (default is 10 if not specified).
+ 
+## Data Understanding
+ 
+The dataset consists of trip records with various attributes such as:
+- `VendorID`
+- `lpep_pickup_datetime`
+- `lpep_dropoff_datetime`
+- `store_and_fwd_flag`
+- `RatecodeID`
+- `PULocationID`
+- `DOLocationID`
+- `passenger_count`
+- `trip_distance`
+- `fare_amount`
+- `extra`
+- `mta_tax`
+- `tip_amount`
+- `tolls_amount`
+- `ehail_fee`
+- `improvement_surcharge`
+- `total_amount`
+- `payment_type`
+- `trip_type`
+- `congestion_surcharge`
+ 
+Understanding the structure and relationships between these attributes is crucial for querying and analyzing the data effectively.
+ 
+## System Design
+ 
+**Backend Structure:**
+- **db.js**: Manages the connection to the MongoDB database.
+- **schema.js**: Defines the schema for MongoDB collections.
+- **app.js**: Sets up the Express server and defines API endpoints.
+ 
+**API Flow:**
+1. **Connect to MongoDB**: `db.js` establishes a connection to the MongoDB database using Mongoose.
+2. **Define Schema**: `schema.js` defines a schema for trip records, ensuring data consistency and validation.
+3. **Set Up Express Server**: `app.js` configures an Express server, defines the `/api/:collectionName` endpoint to fetch rows from any specified collection with an optional limit.
+4. **Handle Requests**: Express routes handle incoming HTTP requests, querying MongoDB using Mongoose models based on the specified collection name and optional parameters.
+5. **Return Data**: Query results are returned as JSON responses to client requests, providing flexibility to fetch rows with various filters.
+ 
+This approach ensures modular and scalable backend development, leveraging Node.js and MongoDB's capabilities to efficiently manage and query trip data.
